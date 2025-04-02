@@ -4,6 +4,7 @@ import Products from "./pages/Products"
 import Product from "./pages/Product" // 👈 Add the component for the single product
 import Contacts from "./pages/Contacts"
 import DefaultLayout from "./layouts/DefaultLayout"
+import NotFound from './pages/NotFound'
 
 export default function App() {
 
@@ -19,6 +20,9 @@ export default function App() {
             <Route path="/products" Component={Products} />
             <Route path="/products/:id" Component={Product} /> {/* 👈 rotta singola */}
             <Route path="/contacts" Component={Contacts} />
+
+            {/* Route catch all */}
+            <Route path="/*" Component={NotFound} />
 
           </Route>
 
