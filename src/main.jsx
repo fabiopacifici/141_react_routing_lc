@@ -4,9 +4,11 @@ import './index.css'
 import * as bootstrap from 'bootstrap'
 
 import App from './App.jsx'
+import { AlertProvider } from './contexts/alertContext.jsx'
 
 createRoot(document.getElementById('root')).render(
-
-  <App />
+  <AlertProvider>
+    <App />
+  </AlertProvider>
 
 )
