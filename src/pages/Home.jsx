@@ -1,11 +1,10 @@
-import { useContext } from "react";
-import ProductContext from "../contexts/productContext";
+import { useProductsContext } from "../contexts/productContext";
 import ProductsGrid from "../components/products/ProductsGrid";
 
 export default function Home() {
 
-  const { products } = useContext(ProductContext)
-  //console.log(products);
+  const { products } = useProductsContext()
+  console.log(products);
 
 
   return (

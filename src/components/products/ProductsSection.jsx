@@ -1,10 +1,9 @@
-import { useContext } from "react";
-import ProductContext from "../../contexts/productContext";
+import { useProductsContext } from "../../contexts/productContext";
 import ProductsGrid from "./ProductsGrid"
 
 export default function ProductsSection() {
 
-  const { products } = useContext(ProductContext)
+  const { products } = useProductsContext()
 
   return (
     <section>

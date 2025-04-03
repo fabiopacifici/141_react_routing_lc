@@ -2,11 +2,11 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom" // 👈 import the useParams hook 
 import { useNavigate } from 'react-router-dom' // 👈 Add the import for the useNavigate hook
 import { Link } from "react-router-dom"
-import { useContext } from "react"
-import productContext from '../contexts/productContext'
+import { useProductsContext } from '../contexts/productContext'
 export default function Product() {
   const [product, setProduct] = useState(null)
-  const { products } = useContext(productContext)
+  const { products } = useProductsContext()
+  console.log(products);
 
   const navigate = useNavigate() // 👈 invoke the hook and save its result into a variable
   const { id } = useParams() // 👈 Use the object descruturing to extract the id segment
