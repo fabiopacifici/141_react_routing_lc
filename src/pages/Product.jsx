@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom" // 👈 import the useParams hook 
 import { useNavigate } from 'react-router-dom' // 👈 Add the import for the useNavigate hook
-
+import { Link } from "react-router-dom"
+import { useContext } from "react"
+import productContext from '../contexts/productContext'
 export default function Product() {
   const [product, setProduct] = useState(null)
+  const { products } = useContext(productContext)
 
-  //console.log(product.description);
   const navigate = useNavigate() // 👈 invoke the hook and save its result into a variable
   const { id } = useParams() // 👈 Use the object descruturing to extract the id segment
-  console.log(id);
+
 
   // Perform an ajax request to the given endpoint using the provided id segment
   useEffect(() => {
@@ -18,12 +20,28 @@ export default function Product() {
         // set the product data using the setProduct function
         setProduct(data)
 
+
+        console.log(data);
       })
       .catch(err => {
         console.log('ERROR', err);
       })
 
-  }, [])
+  }, [id])
+
+
+
+  // Get the current product index
+  const currentProductIndex = products.findIndex(pr => pr.id == Number(id))
+  console.log(currentProductIndex);
+
+  // get the previous product id
+  const prevProductId = currentProductIndex > 0 ? products[currentProductIndex - 1]?.id : null
+  // get the next product id
+
+  const nextProductId = currentProductIndex < products.length - 1 ? products[currentProductIndex + 1]?.id : null
+  console.log(prevProductId, nextProductId);
+
 
   // print the template with the product's data
   return (
@@ -57,6 +75,12 @@ export default function Product() {
                     </div>
                   </div>
                 </section>
+
+                <div className="pagination d-flex justify-content-center gap-3 ">
+                  {prevProductId && (<Link className="btn btn-dark" to={`/products/${prevProductId} `}>Prev</Link>)}
+
+                  {nextProductId && (<Link className="btn btn-dark" to={`/products/${nextProductId}`}>Next</Link>)}
+                </div>
               </>
             )
         }
